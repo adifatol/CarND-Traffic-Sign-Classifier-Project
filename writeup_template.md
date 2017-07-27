@@ -18,11 +18,10 @@ The goals / steps of this project are the following:
 [image1]: ./writeup_imgs/class-distribution.png "Class Dist Visualization"
 [image2]: ./writeup_imgs/b_gray.png "Before Grayscaling"
 [image3]: ./writeup_imgs/a_gray.png "After Grayscaling"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image4]: ./writeup_imgs/t_orig.png "Transformed Sign Original"
+[image5]: ./examples/placeholder.png "Transformed Sign 1"
+[image6]: ./examples/placeholder.png "Transformed Sign 2"
+[image7]: ./examples/placeholder.png "Transformed Sign 3"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -54,30 +53,31 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 ### Design and Test a Model Architecture
 
 #### Grayscale
-First step was to transform all images to grayscale. This benefits greatly to the performance in the next processing steps and also in the training itself. Also it might improve the accuracy in the training because we get loose some extra information (color / light) which may act as useless noise.
+First step was to transform all images to grayscale. This benefits greatly to the performance in the next processing steps and also in the training itself. Also it might improve the accuracy during the training because we get loose some extra information (color / light) which may act as useless noise.
 
 ![alt text][image2]   ![alt text][image3]
 
 #### Normalization
-This step ensures that all the data is on the same scale and can have a couple of benefits, such as improving the math (not getting large numbers for parameters) and improving the performance in the training. The images look the same as the data contains the same information, only on a different scale.
+This step ensures that all the data is on the same scale and can have a couple of benefits, such as improving the math (not getting large numbers for parameters) and improving the performance during the training. The images look the same as the data contains the same information, only on a different scale.
 
-[TO BE CONTINUED]
+#### Data augmentation
+Additional data is very useful at least for classes that don't have enough examples in the training set. So, for every class that had less than 700 examples, it was generated another 3 samples for each existing image. This means that for the lowest represented classes (eg. Class 0) with 180 examples, in the end there are 720 examples. A total of 27357 extra images were added to the training examples set.
+The method to generate the extra data is to randomly apply the folowing operations:
+    - rotate left/right randomly from -5 to +5 degrees.
+    - scale up by adding from 2 to 6 extra width and cropping the image (so we have the same size of 32x32)
+    - move the image by random +/- 2 pixels to left/right and up/down
 
-Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+Here is an example of an original image and an augmented image(s):
 
+![alt text][image4] ![alt text][image5] ![alt text][image6] ![alt text][image7]
 
-I decided to generate additional data because ... 
+The extra images should help reduce the overfitting during the training and get a better accuracy on the validation & test sets.
 
-To add more data to the the data set, I used the following techniques because ... 
+#### Model Architecture
 
-Here is an example of an original image and an augmented image:
+The 'LeNet' model was used in the project, having the folowing structure:
 
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
-
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
 
