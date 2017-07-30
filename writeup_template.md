@@ -19,10 +19,10 @@ The goals / steps of this project are the following:
 [image2]: ./writeup_imgs/b_gray.png "Before Grayscaling"
 [image3]: ./writeup_imgs/a_gray.png "After Grayscaling"
 [image4]: ./writeup_imgs/t_orig.png "Transformed Sign Original"
-[image5]: ./examples/placeholder.png "Transformed Sign 1"
-[image6]: ./examples/placeholder.png "Transformed Sign 2"
-[image7]: ./examples/placeholder.png "Transformed Sign 3"
-[image8]: ./examples/lenet5.png "Lenet5 architecture"
+[image5]: ./writeup_imgs/t_1.png "Transformed Sign 1"
+[image6]: ./writeup_imgs/t_2.png "Transformed Sign 2"
+[image7]: ./writeup_imgs/t_3.png "Transformed Sign 3"
+[image8]: ./writeup_imgs/lenet5.png "Lenet5 architecture"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -76,38 +76,31 @@ The extra images should help reduce the overfitting during the training and get 
 
 #### Model Architecture
 
-The 'LeNet' model was used in the project, having the structure as  in the next image:
-
-![alt text][image8]
-
-The input is an array of grayscale images of size 32×32, with 1 color channel. The images are "squeezed" so instead of 32x32x1, they have the shape 32x32.
-
-There are 6-layers in the network, as folows:
-Layer C1 is a convolution layer with 6 feature maps and a 5×5 kernel for each feature map.
-Layer S1 is a subsampling layer with 6 feature maps and a 2×2 kernel for each feature map.
-Layer C3 is a convolution layer with 16 feature maps and a 6×6 kernel for each feature map.
-Layer S4 is a subsampling layer with 16 feature maps and a 2×2 kernel for each feature map.
-Layer C5 is a convolution layer with 120 feature maps and a 6×6 kernel for each feature map.
-Layer C6 is a fully connected layer
-
+The 'LeNet' model was used in the project, having the structure as in the next table:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32 Grayscale image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32 Grayscale images, with 1 color channel. The images are "squeezed" so instead of 32x32x1, they have the shape 32x32. | 
+| Convolution     	| 5x5 stride, 6 feature maps, valid padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Max pooling	      	| 2x2 stride, 6 feature maps, outputs 14x14x6 				|
+| Convolution	    | 5x5 stride, valid padding, outputs 10x10x16      									|
+| Max pooling	      	| 2x2 stride, 16 feature maps, outputs 5x5x6 				|
+| Flatten		| flattens the matrix to a single dim array, outputs 400									|
+| Fully Connected				| input 400, output 120        									|
+| RELU					|												|
+| Fully Connected				| input 120, output 84        									|
+| RELU					|												|
+| Fully Connected				| input 84, output 43									|
 
-
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
-
-To train the model, I used an ....
+#### Training
+The model was trained using the AdamOptimizer (implementing the [Adam gradient descent](https://arxiv.org/abs/1412.6980) algorithm)
+The batch size used for training was 140 images.
+The optimization was repeated over 70 epochs at a training rate of 0.002.
+Other parameters used:
+    mu = 0
+    sigma = 0.1
+    keep_prob = 0.55 (for dropout, not present in the final solution)
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
