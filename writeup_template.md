@@ -128,38 +128,35 @@ Here are five German traffic signs found on the web:
 ![alt text][image9] ![alt text][image10] ![alt text][image11] 
 ![alt text][image12] ![alt text][image13]
 
-The first image might be difficult to classify because ...
+The first image might be difficult to classify probably because the number of training examples for this class is not that big.
+Second image should be quite good represented in the training set.
+Third image also should be predicted corectly.
+The forth image is not good represented but also it looks a bit "warped" so probably it will be difficult to recognize it.
+The fifth image is actually not present in the training set, but looks very similar to the image "No passing for vehicles over 3.5 metric tons"
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+#### Prediction
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
+| Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Turn right ahead      		| Stop   									              | 
+| Speed limit (70km/h)    | Speed limit (70km/h) 									|
+| Speed limit (60km/h)				| Keep left          											|
+| Stop           	      		| Stop                					 				|
+| No passing for vehicles over 3.5 metric tons			| No passing  |
 
+The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%.
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+#### Top 5 Softmax
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+The softmax probabilities are calculated in the last but one cell in the jupyter file. The results seem a little wierd, as they are not in the 0 - 1 range.
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
-
+| 13.60344315         			| Turn right ahead   									| 
+| 154.18362427     				| Speed limit (70km/h) 										|
+| 16.57634163					| Speed limit (60km/h)											|
+| 53.98876572	      			| Stop					 				|
+| 23.30830002				    | No passing for vehicles over 3.5 metric tons      							|
 
