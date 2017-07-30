@@ -23,6 +23,11 @@ The goals / steps of this project are the following:
 [image6]: ./writeup_imgs/t_2.png "Transformed Sign 2"
 [image7]: ./writeup_imgs/t_3.png "Transformed Sign 3"
 [image8]: ./writeup_imgs/lenet5.png "Lenet5 architecture"
+[image9]: ./from-google/p1.jpg "From google image 1"
+[image10]: ./from-google/p2.jpg "From google image 2"
+[image11]: ./from-google/p3.jpg "From google image 3"
+[image12]: ./from-google/p4.jpg "From google image 4"
+[image13]: ./from-google/p5.jpg "From google image 5"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -116,12 +121,12 @@ Probably adding a convolutional layer and a "correctly placed" dropout layer wou
 
 ### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### Chosen images
 
-Here are five German traffic signs that I found on the web:
+Here are five German traffic signs found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image9] ![alt text][image10] ![alt text][image11] 
+![alt text][image12] ![alt text][image13]
 
 The first image might be difficult to classify because ...
 
