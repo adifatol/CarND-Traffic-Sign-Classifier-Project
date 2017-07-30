@@ -22,6 +22,7 @@ The goals / steps of this project are the following:
 [image5]: ./examples/placeholder.png "Transformed Sign 1"
 [image6]: ./examples/placeholder.png "Transformed Sign 2"
 [image7]: ./examples/placeholder.png "Transformed Sign 3"
+[image8]: ./examples/lenet5.png "Lenet5 architecture"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -75,15 +76,24 @@ The extra images should help reduce the overfitting during the training and get 
 
 #### Model Architecture
 
-The 'LeNet' model was used in the project, having the folowing structure:
+The 'LeNet' model was used in the project, having the structure as  in the next image:
 
-Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+![alt text][image8]
 
-My final model consisted of the following layers:
+The input is an array of grayscale images of size 32×32, with 1 color channel. The images are "squeezed" so instead of 32x32x1, they have the shape 32x32.
+
+There are 6-layers in the network, as folows:
+Layer C1 is a convolution layer with 6 feature maps and a 5×5 kernel for each feature map.
+Layer S1 is a subsampling layer with 6 feature maps and a 2×2 kernel for each feature map.
+Layer C3 is a convolution layer with 16 feature maps and a 6×6 kernel for each feature map.
+Layer S4 is a subsampling layer with 16 feature maps and a 2×2 kernel for each feature map.
+Layer C5 is a convolution layer with 120 feature maps and a 6×6 kernel for each feature map.
+Layer C6 is a fully connected layer
+
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
+| Input         		| 32x32 Grayscale image   							| 
 | Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
